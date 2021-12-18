@@ -16,7 +16,7 @@ function Navbar({ children }) {
           </button>
         </div>
       </div>
-      <div className="mt-14">{children}</div>
+      <div>{children}</div>
     </div>
   )
 }
