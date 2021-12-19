@@ -7,9 +7,11 @@ function Navbar({ children }) {
         className="flex items-center content-center h-14 font-mono bg-teal-700
         justify-between px-5 text-white"
       >
-        <h1 className="font-bold text-2xl">
-          Next Auth
-        </h1>
+        <Link href="/" passHref>
+          <h1 className="font-bold text-2xl hover:cursor-pointer">
+            Next Auth
+          </h1>
+        </Link>
         <div>
           <Link href="/auth/signin" passHref>
             <button

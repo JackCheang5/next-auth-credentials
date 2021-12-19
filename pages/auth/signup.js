@@ -1,21 +1,43 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 function SignUp() {
+  const router = useRouter();
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [c_password, setC_password] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, password, c_password);
     // check if passwords match
     if (password !== c_password) {
       alert("Passwords do not match");
+      return;
     } else {
+      // validate username and password
+      if (!username || !password || !c_password) {
+        alert("Please enter all fields");
+        return;
+      }
       // send request to server
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
       // if successful, redirect to /
-      // if not, show error
+      if (res.status === 201) {
+        router.push("/");
+      } else {
+        // if not, show error
+        alert("Error when creating user", res.status);
+      }
     }
   }
 
