@@ -6,12 +6,12 @@ import prisma from "../../../lib/prisma";
 export default NextAuth({
   session: {
     strategy: "jwt",
-    maxAge: 3 * 60, // 3 minutes
+    maxAge: 60 * 60, // 1 hour
   },
   providers: [
     CredentialsProvider({
       name: 'credentials',
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         // check if user is in database
         const user = await prisma.user.findUnique({
           where: {
@@ -26,7 +26,7 @@ export default NextAuth({
         if (!valid) {
           return null;
         }
-        // return
+        // return user
         return user;
       },
     })

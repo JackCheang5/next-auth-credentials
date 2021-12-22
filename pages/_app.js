@@ -7,7 +7,7 @@ function MyApp({
   pageProps: { session, ...pageProps }
 }) {
   return (
-    <SessionProvider session={session} refetchInterval={3*60}>
+    <SessionProvider session={session} refetchInterval={60*60}>
       <Navbar>
         <Component {...pageProps} />
       </Navbar>
