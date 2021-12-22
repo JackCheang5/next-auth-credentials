@@ -12,7 +12,14 @@ function Navbar({ children }) {
             Next Auth
           </h1>
         </Link>
-        <div>
+        <div className="space-x-3">
+        <Link href="/profile" passHref>
+            <button
+              className="border border-teal-100 p-1 rounded hover:cursor-pointer text-1xl"
+            >
+              Profile
+            </button>
+          </Link>
           <Link href="/auth/signin" passHref>
             <button
               className="border border-teal-100 p-1 rounded hover:cursor-pointer text-1xl"

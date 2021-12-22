@@ -53,6 +53,7 @@ function SignUp() {
             className="border rounded shadow appearance-none"
             type='text'
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
           />
         </div>
 
@@ -62,6 +63,7 @@ function SignUp() {
             className="border rounded shadow appearance-none"
             type='password' 
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="**************"
           />
         </div>
 
@@ -71,6 +73,7 @@ function SignUp() {
             className="border rounded shadow appearance-none"
             type='password' 
             onChange={(e) => setC_password(e.target.value)}
+            placeholder="**************"
           />
         </div>
 

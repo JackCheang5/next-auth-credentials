@@ -1,9 +1,30 @@
 import Link from "next/link"
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from 'next/router';
 
 function SignIn() {
+  const router = useRouter();
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
+
+  const onSignIn = async (e) => {
+    e.preventDefault();
+    // check if username and password are valid
+    if (!username || !password) {
+      alert("Please enter the username and password");
+      return;
+    } else {
+      const status = await signIn('credentials', {
+        redirect: false,
+        username: username,
+        password: password,
+      });
+      if (status.ok === true) {
+        router.push('/');
+      }
+    }
+  }
 
   return (
     <div className="flex justify-center bg-slate-100 h-screen items-start">
@@ -16,6 +37,7 @@ function SignIn() {
             className="border rounded shadow appearance-none" 
             type='text' 
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
           />
         </div>
 
@@ -25,6 +47,7 @@ function SignIn() {
             className="border rounded shadow appearance-none" 
             type='password'
             onChange={(e) => setPassword(e.target.value)} 
+            placeholder="**************"
           />
         </div>
 
@@ -42,6 +65,7 @@ function SignIn() {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2
             px-4 rounded mt-3"
+            onClick={onSignIn}
           >
             Sign In
           </button>
